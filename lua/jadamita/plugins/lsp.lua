@@ -5,7 +5,7 @@ return {
     'williamboman/mason-lspconfig.nvim',
     { 'j-hui/fidget.nvim', opts = {} },
     'folke/neodev.nvim',
-    "hrsh7th/cmp-nvim-lsp-signature-help",
+    'hrsh7th/cmp-nvim-lsp-signature-help',
   },
   config = function()
     local on_attach = function(_, bufnr)
