@@ -8,6 +8,22 @@ return {
     'hrsh7th/cmp-nvim-lsp-signature-help',
   },
   config = function()
+    local border = {
+      { "╭", "FloatBorder" },
+      { "─", "FloatBorder" },
+      { "╮", "FloatBorder" },
+      { "│", "FloatBorder" },
+      { "╯", "FloatBorder" },
+      { "─", "FloatBorder" },
+      { "╰", "FloatBorder" },
+      { "│", "FloatBorder" },
+    };
+
+    local handlers = {
+      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+    }
+
     local on_attach = function(_, bufnr)
       local nmap = function(keys, func, desc)
         if desc then
@@ -86,6 +102,7 @@ return {
           on_attach = on_attach,
           settings = servers[server_name],
           filetypes = (servers[server_name] or {}).filetypes,
+          handlers = handlers,
         }
       end,
     }
